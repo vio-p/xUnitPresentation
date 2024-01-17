@@ -11,6 +11,7 @@ namespace TestProject
             _disjointSet = new DisjointSet<int>();
         }
 
+        // Test for the MakeSet method with positive scenarios
         [Theory]
         [InlineData(0)]
         [InlineData(1)]
@@ -22,6 +23,7 @@ namespace TestProject
             Assert.True(_disjointSet.ContainsData(data));
         }
 
+        // Test for the MakeSet method with negative scenario (trying to make a set with existing data)
         [Theory]
         [InlineData(0)]
         [InlineData(1)]
@@ -33,6 +35,7 @@ namespace TestProject
             Assert.False(result);
         }
 
+        // Test for the FindSet method
         [Theory]
         [InlineData(0)]
         [InlineData(1)]
@@ -43,6 +46,7 @@ namespace TestProject
             Assert.Equal(data, _disjointSet.FindSet(data));
         }
 
+        // Test for the Union method
         [Theory]
         [InlineData(0, 1)]
         [InlineData(2, 3)]

@@ -6,6 +6,7 @@ using WebDriverManager.Helpers;
 
 namespace TestProject
 {
+    // Custom TestCaseOrderer specified for test method ordering
     [TestCaseOrderer(
         ordererTypeName: "TestProject.PriorityOrderer",
         ordererAssemblyName: "TestProject")]
@@ -13,6 +14,7 @@ namespace TestProject
     {
         private readonly IWebDriver _driver;
 
+        // Constructor sets up the ChromeDriver with specific configurations
         public SeleniumTests()
         {
             new DriverManager().SetUpDriver(new ChromeConfig(), VersionResolveStrategy.MatchingBrowser);
@@ -23,6 +25,7 @@ namespace TestProject
 
         }
 
+        // Test for verifying correct title is displayed when navigating to the home page
         [Fact]
         [TestPriority(0)]
         public void CorrectTitleDisplayed_When_NavigateToHomePage()
@@ -31,12 +34,14 @@ namespace TestProject
             Assert.Equal("Acasă - Facultatea de Matematică și informatică", _driver.Title);
         }
 
+        // Test for verifying correct page is opened when navigating to the educational plan
         [Fact]
         [Trait("Category", "SeleniumTest")]
         [TestPriority(1)]
         //[RetryFact(MaxRetries = 3)]
         public void CorrectPageOpened_When_NavigateToEducationalPlan()
         {
+            // Navigation steps to the educational plan page
             _driver.Navigate().GoToUrl("https://mateinfo.unitbv.ro/ro/");
 
             Thread.Sleep(3000);
@@ -63,9 +68,11 @@ namespace TestProject
             ((IJavaScriptExecutor)_driver).ExecuteScript("arguments[0].scrollIntoView(true);", plan2021to2024Anchor);
             plan2021to2024Anchor.Click();
 
+            // Assertion to check if the URL matches the expected value
             Assert.Equal("https://mateinfo.unitbv.ro/images/2023/planuri_inv/PI_IA_20211-2024.pdf", _driver.Url);
         }
 
+        // Dispose method to quit the WebDriver after test execution
         public void Dispose()
         {
             _driver.Quit();

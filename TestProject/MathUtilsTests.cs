@@ -5,6 +5,7 @@ namespace TestProject
 {
     public class MathUtilsTests
     {
+        // Test for the Add method with integer parameters
         [Theory]
         [InlineData(1, 2, 3)]
         [InlineData(-4, 2, -2)]
@@ -14,6 +15,7 @@ namespace TestProject
             Assert.Equal(expectedResult, result);
         }
 
+        // Test for the Add method with double parameters and precision check
         [Fact]
         public void TestAdd_Double()
         {
@@ -23,6 +25,7 @@ namespace TestProject
             Assert.Equal(expectedResult, result, precision: 1);
         }
 
+        // Test for the Add method with non-numeric parameters, expecting an exception
         [Fact]
         public void TestAdd_Throws()
         {

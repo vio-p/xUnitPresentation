@@ -1,5 +1,6 @@
 ﻿namespace TestProject
 {
+    // Test fixture for StackTests
     public class StackFixture : IDisposable
     {
         public StackFixture()
@@ -15,6 +16,7 @@
         public Stack<int> Stack { get; private set; }
     }
 
+    // Custom TestCaseOrderer specified for test method ordering
     [TestCaseOrderer(
         ordererTypeName: "TestProject.PriorityOrderer",
         ordererAssemblyName: "TestProject")]
@@ -27,6 +29,7 @@
             _fixture = fixture;
         }
 
+        // Test for Pop method with priority 0
         [Fact]
         [TestPriority(0)]
         public void TestPush()
@@ -35,6 +38,7 @@
             Assert.Single(_fixture.Stack, 1);
         }
 
+        // Test for Pop method with priority 1
         [Fact]
         [TestPriority(1)]
         public void TestPop()
